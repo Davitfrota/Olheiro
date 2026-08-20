@@ -12,6 +12,12 @@ type Prediction = {
   is_free_tier: boolean;
   published_at: string | null;
   created_at: string;
+  home_team?: string | null;
+  away_team?: string | null;
+  kickoff_at?: string | null;
+  match_status?: string | null;
+  home_score?: number | null;
+  away_score?: number | null;
   actual_outcome?: string | null;
   was_correct?: boolean | null;
   settled_at?: string | null;
@@ -38,6 +44,29 @@ function riskTone(label: string | null) {
   return { bg: "#e8e4db", fg: "#5b685f" };
 }
 
+function formatKickoff(iso: string | null | undefined) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(d);
+}
+
+function matchTitle(p: Prediction) {
+  if (p.home_team && p.away_team) return `${p.home_team} × ${p.away_team}`;
+  return p.match_id.slice(0, 8);
+}
+
+function scoreLine(p: Prediction) {
+  if (p.home_score == null || p.away_score == null) return null;
+  return `${p.home_score}–${p.away_score}`;
+}
+
 function apiBase() {
   return process.env.SCOUTER_API_ORIGIN ?? "http://127.0.0.1:8080";
 }
@@ -61,6 +90,8 @@ export default async function HomePage() {
   const items = predictions?.items ?? [];
   const snapshots = accuracy?.items ?? [];
   const apiDown = !predictions;
+  const settled = items.filter((p) => p.was_correct != null);
+  const hits = settled.filter((p) => p.was_correct).length;
 
   return (
     <main
@@ -98,6 +129,11 @@ export default async function HomePage() {
           Análise estatística + mercado. Não é casa de apostas — conteúdo 18+ com
           responsabilidade.
         </p>
+        {!apiDown && settled.length > 0 ? (
+          <p style={{ margin: "14px 0 0", color: "var(--muted)", fontSize: 14 }}>
+            Nesta lista: {hits}/{settled.length} settled corretos
+          </p>
+        ) : null}
       </header>
 
       {apiDown ? (
@@ -188,6 +224,8 @@ export default async function HomePage() {
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {items.map((p) => {
             const tone = riskTone(p.risk_label);
+            const score = scoreLine(p);
+            const when = formatKickoff(p.kickoff_at);
             return (
               <li
                 key={p.id}
@@ -202,6 +240,16 @@ export default async function HomePage() {
                 <div>
                   <div
                     style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: 18,
+                      marginBottom: 4,
+                    }}
+                  >
+                    {matchTitle(p)}
+                    {score ? ` · ${score}` : ""}
+                  </div>
+                  <div
+                    style={{
                       display: "flex",
                       flexWrap: "wrap",
                       gap: 8,
@@ -209,7 +257,7 @@ export default async function HomePage() {
                       marginBottom: 6,
                     }}
                   >
-                    <strong style={{ fontFamily: "var(--font-display)" }}>
+                    <strong style={{ fontSize: 14 }}>
                       {p.market.toUpperCase()} · {p.selection}
                     </strong>
                     <span
@@ -225,10 +273,16 @@ export default async function HomePage() {
                     <span style={{ fontSize: 12, color: "var(--muted)" }}>
                       {p.value_decision}
                     </span>
+                    {p.match_status ? (
+                      <span style={{ fontSize: 12, color: "var(--muted)" }}>
+                        {p.match_status}
+                      </span>
+                    ) : null}
                   </div>
                   <div style={{ fontSize: 14, color: "var(--muted)" }}>
                     modelo {pct(p.model_probability)} · mercado{" "}
                     {pct(p.market_probability)} · edge {pct(p.edge)}
+                    {when ? ` · ${when}` : ""}
                   </div>
                 </div>
                 <div style={{ textAlign: "right", minWidth: 88 }}>

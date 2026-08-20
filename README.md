@@ -64,7 +64,8 @@ scouter-ia/
 - [x] Settlement `prediction_results` + `scouter-settle` + `GET /v1/accuracy`
 - [x] RLS: writes só via `service_role` (anon write policies revogadas)
 - [x] Web mínima Next.js (`packages/web`) listando tips + acurácia
-- [ ] Colar `SUPABASE_SERVICE_ROLE_KEY` no `.env` (MCP só expõe chaves publicáveis)
+- [x] Predictions API/UI com times, placar e settlement
+- [ ] Auth + paywall Asaas (Fase 1)
 - [ ] Entity resolution contínua / priors para clubes novos da temporada atual
 - [ ] LLM critic + explicações (Fase 2)
 

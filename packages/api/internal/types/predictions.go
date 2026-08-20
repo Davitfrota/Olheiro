@@ -14,6 +14,12 @@ type PredictionDTO struct {
 	IsFreeTier        bool     `json:"is_free_tier"`
 	PublishedAt       *string  `json:"published_at"`
 	CreatedAt         string   `json:"created_at"`
+	HomeTeam          *string  `json:"home_team,omitempty"`
+	AwayTeam          *string  `json:"away_team,omitempty"`
+	KickoffAt         *string  `json:"kickoff_at,omitempty"`
+	MatchStatus       *string  `json:"match_status,omitempty"`
+	HomeScore         *int     `json:"home_score,omitempty"`
+	AwayScore         *int     `json:"away_score,omitempty"`
 	ActualOutcome     *string  `json:"actual_outcome,omitempty"`
 	WasCorrect        *bool    `json:"was_correct,omitempty"`
 	SettledAt         *string  `json:"settled_at,omitempty"`

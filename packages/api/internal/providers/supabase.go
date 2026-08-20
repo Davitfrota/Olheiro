@@ -34,7 +34,7 @@ func (c *SupabaseClient) ListPredictions(limit int, publishedOnly bool) ([]types
 	}
 
 	q := url.Values{}
-	q.Set("select", "id,match_id,market,selection,model_probability,market_probability,edge,confidence_score,risk_label,value_decision,is_free_tier,published_at,created_at,prediction_results(actual_outcome,was_correct,settled_at)")
+	q.Set("select", "id,match_id,market,selection,model_probability,market_probability,edge,confidence_score,risk_label,value_decision,is_free_tier,published_at,created_at,matches(kickoff_at,status,home_score,away_score,home_team:teams!matches_home_team_id_fkey(name),away_team:teams!matches_away_team_id_fkey(name)),prediction_results(actual_outcome,was_correct,settled_at)")
 	q.Set("order", "created_at.desc")
 	q.Set("limit", fmt.Sprintf("%d", limit))
 	if publishedOnly {
@@ -86,6 +86,19 @@ func (c *SupabaseClient) ListPredictions(limit int, publishedOnly bool) ([]types
 		item.ConfidenceScore = asFloatPtr(row["confidence_score"])
 		item.RiskLabel = asStringPtr(row["risk_label"])
 		item.PublishedAt = asStringPtr(row["published_at"])
+
+		if m, ok := row["matches"].(map[string]any); ok {
+			item.KickoffAt = asStringPtr(m["kickoff_at"])
+			item.MatchStatus = asStringPtr(m["status"])
+			item.HomeScore = asIntPtr(m["home_score"])
+			item.AwayScore = asIntPtr(m["away_score"])
+			if home, ok := m["home_team"].(map[string]any); ok {
+				item.HomeTeam = asStringPtr(home["name"])
+			}
+			if away, ok := m["away_team"].(map[string]any); ok {
+				item.AwayTeam = asStringPtr(away["name"])
+			}
+		}
 
 		if pr, ok := row["prediction_results"].(map[string]any); ok {
 			item.ActualOutcome = asStringPtr(pr["actual_outcome"])
@@ -194,4 +207,24 @@ func asBoolPtr(v any) *bool {
 		return nil
 	}
 	return &b
+}
+
+func asIntPtr(v any) *int {
+	if v == nil {
+		return nil
+	}
+	switch n := v.(type) {
+	case float64:
+		i := int(n)
+		return &i
+	case json.Number:
+		i64, err := n.Int64()
+		if err != nil {
+			return nil
+		}
+		i := int(i64)
+		return &i
+	default:
+		return nil
+	}
 }
