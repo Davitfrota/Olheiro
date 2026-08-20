@@ -1,82 +1,66 @@
-# Marca — Scouter
+# Marca — proposta em português
 
-## Decisão de nome (proposta)
+## Recomendação
 
-| Camada | Nome | Uso |
-|---|---|---|
-| **Marca / wordmark** | **Scouter** | Logo, app, falado |
-| **Produto legal** | Scouter IA | Contrato, CNPJ, docs |
-| **Tagline** | Análise com risco explícito | Hero, store, ads |
-| **Anti-tagline** | Não é casa de apostas | Disclaimer fixo |
+| Camada | Nome |
+|---|---|
+| **Wordmark** | **Olheiro** |
+| **Tagline** | Análise com risco explícito |
+| **Anti-tagline** | Não é casa de apostas |
+| **Domínio sugerido** | **olheiro.lumenscode.com.br** (subdomínio Lumens) |
 
-**Por quê Scouter:** metáfora clara (olho de olheiro), curto, internacional, não soa “tipster”.  
-**Por quê não “Scouter IA” no wordmark:** “IA” envelhece e competem por atenção com o nome; fica como subtítulo.
+**Por quê Olheiro:** é o “scouter” do futebol brasileiro — olheiro de clube, leitura de jogo, critério. Curto, falável, sem cheiro de tipster nem de cassino.
 
-### Alternativas (se rejeitar Scouter)
-
-1. **Scoutia** — compacto, domínio possível  
-2. **Scout Verde** / scoutverde.com — mais BR, menos premium  
-3. **Scouter BR** / scouterbr.com — explícito no mercado
-
-## Domínios checados (Vercel)
-
-| Domínio | Status | Nota |
-|---|---|---|
-| scouter.com.br | indisponível | — |
-| scouter.app | indisponível | — |
-| **scouteria.com** | **livre · ~US$11,25/ano** | melhor match com “Scouter IA” |
-| **scouterbr.com** | **livre · ~US$11,25/ano** | foco Brasil |
-| **scouter.fyi** | **livre · ~US$16,50/ano** | curto, moderno |
-| **scoutia.app** | **livre · ~US$9,99/ano** | app-first, barato |
-| **scoutverde.com** | **livre · ~US$11,25/ano** | marca alternativa |
-| scoutia.com / .app | a confirmar | — |
-
-### Mapa de subdomínios (depois de comprar o root)
+Subdomínios depois da compra:
 
 ```
-app.<dominio>   → Web (Next.js)
-api.<dominio>   → Go API + webhook AbacatePay
-www.<dominio>   → redirect → app
+app.olheiro.app   → Web   (ou só olheiro.app)
+api.olheiro.app   → API + webhook AbacatePay
 ```
 
-Webhook AbacatePay ficaria:
+Webhook:
 
-`https://api.<dominio>/v1/billing/webhooks/abacatepay?webhookSecret=...`
+`https://api.olheiro.app/v1/billing/webhooks/abacatepay?webhookSecret=...`
 
-## Identidade visual
+---
 
-### Direção
-Editorial esportivo · gramado + papel craft · **não** casino, **não** neon roxo, **não** tipster YouTube.
+## Shortlist (todas em PT)
 
-### Tokens
+| Nome | Sensação | Domínio livre | Preço/ano |
+|---|---|---|---|
+| **Olheiro** ★ | olho técnico, clube | olheiro.app | ~US$9,99 |
+| Olheiro | mesmo | olheiro.fyi | ~US$7 |
+| Olheiro IA | produto+IA | olheiroia.com | ~US$11,25 |
+| Meu Olheiro | mais app/pessoal | meuolheiro.com | ~US$11,25 |
+| Escala Clara | risco explícito | escalaclara.com | ~US$11,25 |
+| Risco Claro | direto no valor | riscoclaro.com | ~US$11,25 |
+| Olho do Campo | mais literário | olhodocampo.com | ~US$11,25 |
+| Análise Clara | sóbrio, editorial | analiseclara.com | ~US$11,25 |
+| Linha Verde | visual/gramado | linhaverde.app | ~US$9,99 |
+| Radar Jogo | monitoramento | radarjogo.com | ~US$11,25 |
+
+### Evitar
+- Nomes com “palpite/aposta/bet” → regulatório + percepção errada  
+- “Scouter” se a marca for 100% BR na fala do usuário  
+
+### Já pegos (não dá)
+olheiro.com, olheiro.com.br, criterio.app, juizo.app, veredito.app, campoclaro.com
+
+---
+
+## Identidade visual (mantém a direção atual)
+
+Tokens iguais ao web atual — gramado + papel craft:
 
 ```css
---bg:        #F3EFE6; /* papel quente */
---bg-deep:   #E7E0D2;
---ink:       #14201A; /* quase preto-verde */
---muted:     #5B685F;
---line:      #C9C0B0;
---pitch:     #1F6B45; /* gramado — cor primária */
---pitch-soft:#D7EBE0;
---warn:      #9A3412;
---ok:        #166534;
---bad:       #991B1B;
+--pitch: #1F6B45;
+--bg:    #F3EFE6;
+--ink:   #14201A;
 ```
 
-### Tipografia
-- **Display:** Syne (já no web) — geométrica, presença de marca  
-- **Corpo:** DM Sans — legível em tip lists  
+- **Display:** Syne  
+- **Corpo:** DM Sans  
+- Wordmark: **OLHEIRO** (maiúsculas geométricas)  
+- Mark: lente/olho + linha de campo (mesmo espírito do asset atual)
 
-### Logo
-Wordmark **SCOUTER** + marca abstrata (lente/olho + linha de campo).  
-Asset gerado: `.cursor/projects/.../assets/scouter-logo-mark.png` (iterar no Figma/Paper depois).
-
-### Tom de voz
-Direto, técnico sem jargão de tipster. Sempre: probabilidade ≠ certeza. 18+.
-
-## Próximos passos
-
-1. Escolher root: **scouteria.com** (recomendado) ou scouterbr.com  
-2. Comprar no Vercel Domains e apontar `app` + `api`  
-3. Deploy web + API com esses hosts  
-4. Registrar webhook AbacatePay na URL `api.`
+Tom: técnico, direto, 18+, probabilidade ≠ certeza.

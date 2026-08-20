@@ -45,6 +45,7 @@ scouter-ia/
 - [Pipeline de raciocínio](./docs/pipeline-raciocinio.md) — arquitetura de julgamento sob incerteza
 - [Billing AbacatePay](./docs/billing-abacatepay.md)
 - [Marca / identidade](./docs/marca.md)
+- [Deploy Jenkins/nginx](./deploy/README.md) — `olheiro.lumenscode.com.br`
 
 ## Fase 0 (em andamento)
 
