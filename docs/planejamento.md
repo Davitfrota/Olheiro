@@ -84,7 +84,7 @@ Referência: Lei nº 14.790/2023 ("Lei das Bets"), regulamentada pela Secretaria
 | Modelagem estatística | Serviço Python separado (Poisson/Elo) | Pode migrar para Go depois se performance justificar |
 | Orquestração LLM / RAG | Padrão já usado na Taxiana, adaptado ao domínio esportivo | Intent detection + contexto + geração explicativa |
 | Banco de dados | PostgreSQL via Supabase | Auth + DB + realtime para odds mutáveis |
-| Pagamento/assinatura | Asaas | Já integrado no MindCare (modelo subconta) |
+| Pagamento/assinatura | AbacatePay | Checkout + assinatura via API BR (PIX/CARD) |
 | Web | Next.js | Consistente com stack atual |
 | Android | React Native | Compartilha lógica/UI com o time web durante MVP paralelo |
 | Notificações push | Firebase Cloud Messaging | Padrão para RN + Web |
@@ -130,7 +130,7 @@ Entidades principais a estruturar no banco:
 - `predictions` — palpite gerado, mercado, probabilidade modelada, score de confiança, categoria de risco, explicação textual.
 - `prediction_results` — resultado real vs. previsto, para alimentar o histórico público de acurácia.
 - `users` — auth, plano (free/assinante), preferências de risco.
-- `subscriptions` — status de assinatura via Asaas.
+- `subscriptions` — status de assinatura via AbacatePay.
 - `alerts` — configuração de alertas de odds por usuário.
 
 Entidades adicionais recomendadas:
@@ -154,7 +154,7 @@ Entidades adicionais recomendadas:
 
 - Ingestão de odds (The Odds API) para 2–3 ligas.
 - Motor de análise gerando palpites 1x2 e over/under, com score de confiança (sem explicação em linguagem natural ainda).
-- Web (Next.js) e App Android (React Native) com autenticação e paywall via Asaas.
+- Web (Next.js) e App Android (React Native) com autenticação e paywall via AbacatePay.
 - Estrutura de camada free vs. assinante implementada.
 - Disclaimers de jogo responsável e verificação de idade no cadastro.
 - Critério de saída: usuário consegue se cadastrar, ver palpites gratuitos, assinar e ver mercados adicionais.

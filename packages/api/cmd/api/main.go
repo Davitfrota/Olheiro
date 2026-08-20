@@ -18,11 +18,13 @@ func main() {
 	}
 
 	sb := providers.NewSupabaseClient(cfg.SupabaseURL, cfg.SupabaseAnonKey)
+	ap := providers.NewAbacatePayClient(cfg.AbacatePayAPIBase, cfg.AbacatePayAPIKey, cfg.AbacatePayProductID)
+
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*",
 		AllowMethods: "GET,POST,OPTIONS",
-		AllowHeaders: "Origin, Content-Type, Accept",
+		AllowHeaders: "Origin, Content-Type, Accept, X-Webhook-Signature",
 	}))
 
 	app.Get("/health", handlers.Health)
@@ -30,6 +32,8 @@ func main() {
 	app.Post("/v1/analysis/value-gate", handlers.EvaluateValueGate)
 	app.Get("/v1/predictions", handlers.ListPredictions(sb))
 	app.Get("/v1/accuracy", handlers.ListAccuracy(sb))
+	app.Post("/v1/billing/checkout", handlers.CreateBillingCheckout(ap))
+	app.Post("/v1/billing/webhooks/abacatepay", handlers.AbacatePayWebhook(cfg.AbacatePayWebhookSecret))
 
 	log.Printf("scouter-api listening on :%s", cfg.Port)
 	if err := app.Listen(":" + cfg.Port); err != nil {

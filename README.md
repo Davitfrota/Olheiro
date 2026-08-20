@@ -12,7 +12,7 @@ Aplicativo de análise esportiva movido por IA — cruza estatísticas de futebo
 | Modelagem estatística | Python (Poisson/Elo) |
 | Orquestração LLM | Padrão RAG + intent detection |
 | Banco de dados | PostgreSQL via Supabase |
-| Pagamentos | Asaas (assinatura freemium) |
+| Pagamentos | AbacatePay (assinatura freemium) |
 | Web | Next.js |
 | Android | React Native |
 | Push notifications | Firebase Cloud Messaging |
@@ -43,6 +43,7 @@ scouter-ia/
 
 - [Planejamento](./docs/planejamento.md)
 - [Pipeline de raciocínio](./docs/pipeline-raciocinio.md) — arquitetura de julgamento sob incerteza
+- [Billing AbacatePay](./docs/billing-abacatepay.md)
 
 ## Fase 0 (em andamento)
 
@@ -65,7 +66,7 @@ scouter-ia/
 - [x] RLS: writes só via `service_role` (anon write policies revogadas)
 - [x] Web mínima Next.js (`packages/web`) listando tips + acurácia
 - [x] Predictions API/UI com times, placar e settlement
-- [ ] Auth + paywall Asaas (Fase 1)
+- [ ] Auth + paywall AbacatePay (Fase 1)
 - [ ] Entity resolution contínua / priors para clubes novos da temporada atual
 - [ ] LLM critic + explicações (Fase 2)
 
