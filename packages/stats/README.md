@@ -22,13 +22,24 @@ pip install -e ".[dev]"
 ## Spike de APIs
 
 ```bash
-# Copie .env.example para .env na raiz e preencha as chaves
-set API_FOOTBALL_KEY=...
-set THE_ODDS_API_KEY=...
+# .env na raiz do repo (com ou sem aspas nas chaves)
 scouter-spike
 ```
 
-Exit codes: `0` ok, `1` erro de API, `2` keys ausentes (esperado sem .env).
+O spike carrega `.env` automaticamente e inclui:
+- API-Football (Brasileirão, plano free: temporadas 2022–2024)
+- The Odds API (prioriza `soccer_brazil_campeonato`)
+- Cruzamento de nomes de times entre as duas fontes
+
+Exit codes: `0` ok, `1` erro de API, `2` keys ausentes.
+
+## Backtest (Fase 0)
+
+```bash
+scouter-backtest --season 2024 --max-fixtures 80
+```
+
+Calcula Brier score do prior Poisson vs resultados reais. Baseline uniforme = 0.667.
 
 ## Testes
 

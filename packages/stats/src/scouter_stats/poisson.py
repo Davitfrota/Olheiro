@@ -111,6 +111,7 @@ def build_prior(
     matches_away_season: int,
     calibration_bucket: str = "brasileirao-1x2",
     league_avg_goals: float = 1.35,
+    home_advantage: float = 1.10,
 ) -> StatisticalPrior:
     thin_data = matches_home_season < 8 or matches_away_season < 8
     sample = SampleInfo(
@@ -119,7 +120,12 @@ def build_prior(
         thin_data=thin_data,
     )
 
-    lambdas = estimate_lambda(home, away, league_avg_goals=league_avg_goals)
+    lambdas = estimate_lambda(
+        home,
+        away,
+        league_avg_goals=league_avg_goals,
+        home_advantage=home_advantage,
+    )
     matrix = score_matrix(lambdas.home, lambdas.away)
     h2h = h2h_from_matrix(matrix)
 

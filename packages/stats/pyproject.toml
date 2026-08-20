@@ -15,6 +15,7 @@ dev = [
 
 [project.scripts]
 scouter-spike = "scouter_stats.spike:main"
+scouter-backtest = "scouter_stats.backtest:main"
 
 [build-system]
 requires = ["hatchling"]

@@ -48,9 +48,12 @@ scouter-ia/
 
 - [x] Schema SQL (`supabase/migrations/`)
 - [x] Motor estatístico Python (`packages/stats/`)
-- [ ] Spike de APIs com chaves reais
-- [ ] Backtest Poisson vs resultados reais (Brasileirão)
+- [x] Spike de APIs com chaves reais
+- [x] Backtest Poisson vs resultados reais (Brasileirão 2024, Brier 0.645)
+- [x] Scaffold inicial da API Go/Fiber (`packages/api/`)
+- [x] Seed inicial de `team_aliases` (`supabase/migrations/20260820010000_seed_team_aliases.sql`)
 
 ## Licença
 
 Proprietário — Davi Tavares Frota © 2026
+
