@@ -328,6 +328,19 @@ def load_match_jobs(sb, *, limit: int | None = None) -> list[dict]:
     for o in odds:
         by_match.setdefault(o["match_id"], []).append(o)
 
+    # context + absences
+    contexts = sb.table("match_context").select("*").execute().data
+    ctx_by_match: dict[str, dict] = {}
+    for c in contexts:
+        mid = c["match_id"]
+        if mid not in ctx_by_match or c["fetched_at"] > ctx_by_match[mid]["fetched_at"]:
+            ctx_by_match[mid] = c
+
+    absences = sb.table("match_absences").select("*").execute().data
+    abs_by_match: dict[str, list] = {}
+    for a in absences:
+        abs_by_match.setdefault(a["match_id"], []).append(a)
+
     jobs: list[dict] = []
     for mid, prior in latest.items():
         snaps = by_match.get(mid, [])
@@ -350,6 +363,8 @@ def load_match_jobs(sb, *, limit: int | None = None) -> list[dict]:
             "odds_outcomes": med,
             "odds_hash": _hash_odds(med),
             "odds_snapshot_id": snaps[0]["id"],
+            "context": ctx_by_match.get(mid),
+            "absences": abs_by_match.get(mid, []),
         })
         if limit and len(jobs) >= limit:
             break
@@ -449,11 +464,16 @@ def main() -> None:
     for job in jobs:
         prior = job["prior"]
         sample = prior.get("sample") or {}
+        ctx = job.get("context")
+        absences = job.get("absences")
+        lineup_status = (ctx or {}).get("lineup_status") or "UNKNOWN"
+        # Se há row de contexto, absences foram consultadas (mesmo que lista vazia)
+        absences_arg: list[dict] | None = absences if ctx is not None else None
         pack = build_context_pack(
             thin_data=bool(sample.get("thin_data", False)),
             has_odds=True,
-            absences=None,
-            lineup_status="UNKNOWN",
+            absences=absences_arg,
+            lineup_status=lineup_status,
         )
         judgments = [
             judge_h2h_selection(

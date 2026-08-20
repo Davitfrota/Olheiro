@@ -57,8 +57,14 @@ scouter-judge --dry-run
 scouter-judge
 ```
 
-Lê `statistical_priors` + `odds_snapshots`, aplica value gate + risk vetos, grava
-`prediction_judgments` e `predictions`. Sem LLM. Lineup UNKNOWN ⇒ nunca `conservative`.
+Lê `statistical_priors` + `odds_snapshots` (+ `match_context`/`match_absences`),
+aplica value gate + risk vetos, grava `prediction_judgments` e `predictions`.
+
+## Context ingest (lesões + escalações)
+
+```bash
+scouter-context --season 2024 --lineups-limit 10
+```
 
 ## Testes
 

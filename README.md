@@ -58,8 +58,11 @@ scouter-ia/
 - [x] Pipeline de ingestão (`scouter-ingest`) — 380 matches + 328 odds
 - [x] Priors Poisson persistidos (`statistical_priors`, 372 rows)
 - [x] Motor de julgamento Fase 0.5 (`scouter-judge`) — judgments + predictions
-- [ ] Context pack qualitativo (escalações / desfalques)
-- [ ] Entity resolution completa (aliases dos 20 times)
+- [x] Aliases cross-API completos (46 aliases + clubes atuais da Odds API)
+- [x] Contexto qualitativo (`scouter-context`) — 1668 absences + lineups
+- [x] API Go `GET /v1/predictions`
+- [ ] Entity resolution contínua / priors para clubes novos da temporada atual
+- [ ] LLM critic + explicações (Fase 2)
 
 ## Supabase
 

@@ -1,10 +1,11 @@
-# Scouter API (Go/Fiber)
+﻿# Scouter API (Go/Fiber)
 
 Backend inicial da Fase 0/1.
 
-## Endpoints scaffold
+## Endpoints
 
 - `GET /health`
+- `GET /v1/predictions?limit=50&published=true`
 - `POST /v1/ingestion/fixtures`
 - `POST /v1/analysis/value-gate`
 
@@ -12,23 +13,14 @@ Backend inicial da Fase 0/1.
 
 ```bash
 cd packages/api
+# precisa de SUPABASE_URL e SUPABASE_ANON_KEY no .env da raiz
 go run ./cmd/api
 ```
 
-Porta padr�o: `8080` (`SCOUTER_API_PORT` para sobrescrever).
+Porta padrão: `8080` (`SCOUTER_API_PORT` para sobrescrever).
 
-## Exemplo value-gate
+## Exemplo
 
 ```bash
-curl -X POST http://localhost:8080/v1/analysis/value-gate \
-  -H "Content-Type: application/json" \
-  -d '{
-    "p_adj": 0.58,
-    "se_adj": 0.08,
-    "p_fair": 0.68,
-    "information_completeness": 0.55,
-    "thin_data": true,
-    "k_multiplier": 1.75,
-    "completeness_threshold": 0.7
-  }'
+curl http://localhost:8080/v1/predictions?limit=5
 ```

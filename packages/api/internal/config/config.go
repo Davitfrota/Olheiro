@@ -7,7 +7,9 @@ import (
 )
 
 type Config struct {
-	Port string
+	Port            string
+	SupabaseURL     string
+	SupabaseAnonKey string
 }
 
 func Load() (Config, error) {
@@ -18,5 +20,9 @@ func Load() (Config, error) {
 		port = "8080"
 	}
 
-	return Config{Port: port}, nil
+	return Config{
+		Port:            port,
+		SupabaseURL:     os.Getenv("SUPABASE_URL"),
+		SupabaseAnonKey: os.Getenv("SUPABASE_ANON_KEY"),
+	}, nil
 }
