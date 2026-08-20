@@ -57,6 +57,9 @@ scouter-ia/
 - [x] Seed Brasileirão 2024 — 20 times + 5 aliases cross-API
 - [x] Pipeline de ingestão (`scouter-ingest`) — 380 matches + 328 odds
 - [x] Priors Poisson persistidos (`statistical_priors`, 372 rows)
+- [x] Motor de julgamento Fase 0.5 (`scouter-judge`) — judgments + predictions
+- [ ] Context pack qualitativo (escalações / desfalques)
+- [ ] Entity resolution completa (aliases dos 20 times)
 
 ## Supabase
 

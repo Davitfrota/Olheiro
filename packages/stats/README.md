@@ -50,6 +50,16 @@ Calcula Brier score do prior Poisson vs resultados reais. Baseline uniforme = 0.
 - Acurácia argmax: 44.9%
 - Priors persistidos em `statistical_priors`
 
+## Judgment pipeline (Fase 0.5)
+
+```bash
+scouter-judge --dry-run
+scouter-judge
+```
+
+Lê `statistical_priors` + `odds_snapshots`, aplica value gate + risk vetos, grava
+`prediction_judgments` e `predictions`. Sem LLM. Lineup UNKNOWN ⇒ nunca `conservative`.
+
 ## Testes
 
 ```bash

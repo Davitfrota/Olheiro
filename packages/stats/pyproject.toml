@@ -18,6 +18,7 @@ dev = [
 scouter-spike = "scouter_stats.spike:main"
 scouter-backtest = "scouter_stats.backtest:main"
 scouter-ingest = "scouter_stats.ingest:main"
+scouter-judge = "scouter_stats.judge:main"
 
 [build-system]
 requires = ["hatchling"]

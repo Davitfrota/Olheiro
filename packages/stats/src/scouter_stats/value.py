@@ -7,22 +7,35 @@ from scouter_stats.models import ValueGateInput, ValueGateResult
 
 def evaluate_value_gate(inp: ValueGateInput) -> ValueGateResult:
     edge = round(inp.p_adj - inp.p_fair, 4)
+    threshold = inp.k_multiplier * inp.se_adj
 
+    # Completeness baixa: pode registrar NOISE (acordo), nunca VALUE.
     if inp.information_completeness < inp.completeness_threshold:
+        if abs(edge) <= threshold:
+            return ValueGateResult(
+                edge=edge,
+                decision="NOISE",
+                reason=(
+                    f"low completeness ({inp.information_completeness:.2f}) "
+                    f"but |edge| within noise band"
+                ),
+            )
         return ValueGateResult(
             edge=edge,
             decision="ABSTAIN",
-            reason=f"completeness {inp.information_completeness:.2f} < {inp.completeness_threshold}",
+            reason=(
+                f"completeness {inp.information_completeness:.2f} < "
+                f"{inp.completeness_threshold}; refusing value claim"
+            ),
         )
 
-    if inp.thin_data and abs(edge) < inp.k_multiplier * inp.se_adj * 1.5:
+    if inp.thin_data and abs(edge) < threshold * 1.5:
         return ValueGateResult(
             edge=edge,
             decision="ABSTAIN",
             reason="thin_data with insufficient edge margin",
         )
 
-    threshold = inp.k_multiplier * inp.se_adj
     if abs(edge) <= threshold:
         return ValueGateResult(
             edge=edge,
@@ -40,7 +53,7 @@ def evaluate_value_gate(inp: ValueGateInput) -> ValueGateResult:
     return ValueGateResult(
         edge=edge,
         decision="ABSTAIN",
-        reason=f"negative edge against market without structural override",
+        reason="negative edge against market without structural override",
     )
 
 

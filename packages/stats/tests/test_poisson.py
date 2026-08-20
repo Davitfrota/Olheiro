@@ -19,12 +19,13 @@ def test_build_prior_probabilities_sum_to_one():
     assert 0 < prior.derived.over_25 < 1
 
 
-def test_value_gate_abstains_on_low_completeness():
+def test_value_gate_abstains_on_low_completeness_with_large_edge():
+    # Completeness baixa + edge grande ⇒ ABSTAIN (não inventa VALUE)
     result = evaluate_value_gate(
         ValueGateInput(
-            p_adj=0.58,
-            se_adj=0.08,
-            p_fair=0.68,
+            p_adj=0.72,
+            se_adj=0.05,
+            p_fair=0.50,
             information_completeness=0.55,
             thin_data=True,
         )
