@@ -56,7 +56,7 @@ docker exec back-nginx-1 nginx -s reload
 ## 4) Jenkins
 
 1. New Item → Pipeline → **Pipeline script from SCM**
-2. Repo: `https://github.com/Davitfrota/scouter-ia.git`
+2. Repo: `https://github.com/Davitfrota/Olheiro.git`
 3. Script Path: `Jenkinsfile`
 4. Credentials:
    - Git: `key-github` (ou o ID que você usa)

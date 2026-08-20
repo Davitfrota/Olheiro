@@ -34,7 +34,7 @@ pipeline {
         )
         string(
             name: 'GIT_REPO_URL',
-            defaultValue: 'https://github.com/Davitfrota/scouter-ia.git',
+            defaultValue: 'https://github.com/Davitfrota/Olheiro.git',
             trim: true,
             description: 'URL do repositório.'
         )
