@@ -13,8 +13,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Scouter IA",
-  description: "Palpites classificados por risco — análise, não casa de apostas.",
+  title: "Scouter — análise com risco explícito",
+  description:
+    "Palpites classificados por risco. Análise estatística + mercado. Não é casa de apostas.",
 };
 
 export default function RootLayout({

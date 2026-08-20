@@ -102,18 +102,28 @@ export default async function HomePage() {
       }}
     >
       <header style={{ marginBottom: 40 }}>
-        <p
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: 14,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "var(--pitch)",
-            margin: 0,
-          }}
-        >
-          Scouter IA
-        </p>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand-mark.png"
+            alt="Scouter"
+            width={44}
+            height={44}
+            style={{ borderRadius: 8 }}
+          />
+          <p
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: 14,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "var(--pitch)",
+              margin: 0,
+            }}
+          >
+            Scouter
+          </p>
+        </div>
         <h1
           style={{
             fontFamily: "var(--font-display)",
