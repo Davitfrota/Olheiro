@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+vendor/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+tmp/
+temp/
+.cache/
+
+# Test & coverage
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Go
+bin/
+*.test
+
+# React Native
+android/app/build/
+ios/build/
+.expo/
+*.jks
