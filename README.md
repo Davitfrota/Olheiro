@@ -44,6 +44,7 @@ scouter-ia/
 - [Planejamento](./docs/planejamento.md)
 - [Pipeline de raciocínio](./docs/pipeline-raciocinio.md) — arquitetura de julgamento sob incerteza
 - [Billing AbacatePay](./docs/billing-abacatepay.md)
+- [Marca / identidade](./docs/marca.md)
 
 ## Fase 0 (em andamento)
 
