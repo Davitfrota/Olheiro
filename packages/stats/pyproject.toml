@@ -6,6 +6,7 @@ requires-python = ">=3.11"
 dependencies = [
   "httpx>=0.27",
   "pydantic>=2.7",
+  "supabase>=2.9",
 ]
 
 [project.optional-dependencies]
@@ -16,6 +17,7 @@ dev = [
 [project.scripts]
 scouter-spike = "scouter_stats.spike:main"
 scouter-backtest = "scouter_stats.backtest:main"
+scouter-ingest = "scouter_stats.ingest:main"
 
 [build-system]
 requires = ["hatchling"]
