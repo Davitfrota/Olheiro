@@ -36,10 +36,19 @@ Exit codes: `0` ok, `1` erro de API, `2` keys ausentes.
 ## Backtest (Fase 0)
 
 ```bash
-scouter-backtest --season 2024 --max-fixtures 80
+# Fonte padrão: matches no Supabase (temporada completa)
+scouter-backtest --source supabase --persist
+
+# Ou via API-Football (amostra)
+scouter-backtest --source api --season 2024 --max-fixtures 80
 ```
 
 Calcula Brier score do prior Poisson vs resultados reais. Baseline uniforme = 0.667.
+
+**Resultado Brasileirão 2024 (Supabase, 372 jogos scored):**
+- Brier médio: **0.6315** (bate uniforme)
+- Acurácia argmax: 44.9%
+- Priors persistidos em `statistical_priors`
 
 ## Testes
 

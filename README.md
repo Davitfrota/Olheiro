@@ -49,12 +49,14 @@ scouter-ia/
 - [x] Schema SQL (`supabase/migrations/`)
 - [x] Motor estatístico Python (`packages/stats/`)
 - [x] Spike de APIs com chaves reais
-- [x] Backtest Poisson vs resultados reais (Brasileirão 2024, Brier 0.645)
+- [x] Backtest Poisson vs resultados reais (Brasileirão 2024, Brier **0.6315** em 372 jogos)
 - [x] Scaffold inicial da API Go/Fiber (`packages/api/`)
 - [x] Seed inicial de `team_aliases` (`supabase/migrations/20260820010000_seed_team_aliases.sql`)
 - [x] MCP Supabase configurado e autenticado (`.cursor/mcp.json`)
 - [x] Migrations aplicadas no projeto remoto (`ggeyvjhvdvxbxjdrexoa`)
 - [x] Seed Brasileirão 2024 — 20 times + 5 aliases cross-API
+- [x] Pipeline de ingestão (`scouter-ingest`) — 380 matches + 328 odds
+- [x] Priors Poisson persistidos (`statistical_priors`, 372 rows)
 
 ## Supabase
 
