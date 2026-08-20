@@ -39,7 +39,17 @@ scouter-ia/
 - **Fase 3** — Value bets, alertas de odds, personalização
 - **Fase 4** — Expansão (outros esportes, afiliação)
 
-Ver [docs/planejamento.md](./docs/planejamento.md) para o documento completo.
+## Documentação
+
+- [Planejamento](./docs/planejamento.md)
+- [Pipeline de raciocínio](./docs/pipeline-raciocinio.md) — arquitetura de julgamento sob incerteza
+
+## Fase 0 (em andamento)
+
+- [x] Schema SQL (`supabase/migrations/`)
+- [x] Motor estatístico Python (`packages/stats/`)
+- [ ] Spike de APIs com chaves reais
+- [ ] Backtest Poisson vs resultados reais (Brasileirão)
 
 ## Licença
 
