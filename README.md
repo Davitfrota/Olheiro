@@ -4,19 +4,19 @@ Aplicativo de análise esportiva movido por IA — cruza estatísticas de futebo
 
 **Não é uma casa de apostas.** Ferramenta de análise e conteúdo; não processa apostas nem movimenta dinheiro de jogo.
 
-## Stack (planejada)
+## Stack
 
-| Camada | Tecnologia |
-|---|---|
-| API | Go + Fiber |
-| Modelagem estatística | Python (Poisson/Elo) |
-| Orquestração LLM | Padrão RAG + intent detection |
-| Banco de dados | PostgreSQL via Supabase |
-| Pagamentos | Asaas (assinatura freemium) |
-| Web | Next.js |
-| Android | React Native |
-| Push notifications | Firebase Cloud Messaging |
-| Observabilidade IA | Helicone |
+| Camada | Tecnologia | Status |
+|---|---|---|
+| API | Go + Fiber | Scaffold (Fase 0) |
+| Modelagem estatística | Python (Poisson) | Implementado |
+| Orquestração LLM | Padrão RAG + intent detection | Fase 2 |
+| Banco de dados | PostgreSQL via Supabase | Implementado |
+| Pagamentos | Asaas (assinatura freemium) | Fase 1 |
+| Web | Next.js | Fase 1 |
+| Android | React Native | Fase 1 |
+| Push notifications | Firebase Cloud Messaging | Fase 3 |
+| Observabilidade IA | Helicone | Fase 2 |
 
 ## Estrutura do monorepo
 
@@ -33,8 +33,8 @@ scouter-ia/
 
 ## Roadmap
 
-- **Fase 0** — Fundação de dados (ingestão, schema, validação Poisson)
-- **Fase 1** — MVP (palpites básicos, auth, paywall, Web + Android)
+- **Fase 0** — Fundação de dados (ingestão, schema, validação Poisson) — **concluída**
+- **Fase 1** — MVP (palpites básicos, auth, paywall, Web + Android) — **em andamento**
 - **Fase 2** — Camada de IA explicativa + histórico de acurácia
 - **Fase 3** — Value bets, alertas de odds, personalização
 - **Fase 4** — Expansão (outros esportes, afiliação)
@@ -44,7 +44,7 @@ scouter-ia/
 - [Planejamento](./docs/planejamento.md)
 - [Pipeline de raciocínio](./docs/pipeline-raciocinio.md) — arquitetura de julgamento sob incerteza
 
-## Fase 0 (em andamento)
+## Fase 0 (concluída)
 
 - [x] Schema SQL (`supabase/migrations/`)
 - [x] Motor estatístico Python (`packages/stats/`)

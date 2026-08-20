@@ -2,7 +2,7 @@
 
 **Autor:** Davi Tavares Frota  
 **Data:** Agosto 2026  
-**Status:** Planejamento inicial — pré-desenvolvimento
+**Status:** Fase 0 concluída — Fase 1 (MVP) em andamento
 
 ---
 
@@ -143,12 +143,14 @@ Entidades adicionais recomendadas:
 
 ## 6. Roadmap
 
-### Fase 0 — Fundação de dados (1–2 semanas)
+### Fase 0 — Fundação de dados ✅ concluída
 
-- Estruturar pipeline de ingestão (Go/Fiber) para uma liga piloto (ex.: Brasileirão).
-- Popular banco com histórico de partidas e estatísticas.
-- Validar o modelo estatístico básico (Poisson) contra resultados reais antes de qualquer UI.
-- Critério de saída: modelo gerando probabilidades plausíveis para jogos passados, validáveis manualmente.
+- [x] Pipeline de ingestão para liga piloto (Brasileirão) — `scouter-ingest` (380 matches, 328 odds).
+- [x] Banco populado com histórico de partidas e estatísticas (Supabase `ggeyvjhvdvxbxjdrexoa`).
+- [x] Modelo estatístico Poisson validado contra resultados reais (Brier 0.6315 em 372 jogos, baseline 0.667).
+- [x] Critério de saída atingido: 372 priors em `statistical_priors`, validáveis manualmente.
+- [x] Scaffold API Go/Fiber, motor Python (`packages/stats/`), schema SQL (7 migrations).
+- [x] Spec do pipeline de raciocínio (`docs/pipeline-raciocinio.md`).
 
 ### Fase 1 — MVP (análise + palpite básico)
 
@@ -190,9 +192,11 @@ Entidades adicionais recomendadas:
 
 ---
 
-## 8. Próximos Passos Imediatos
+## 8. Próximos Passos Imediatos (Fase 1)
 
-1. Validar acesso e limites reais das APIs escolhidas (API-Football, The Odds API) com a liga piloto.
-2. Desenhar o schema completo do banco (Fase 0) em detalhe antes de codar.
-3. Gerar a spec técnica detalhada da Fase 1 (telas, endpoints, fluxo de auth + paywall) usando o padrão de feature spec já estabelecido.
-4. Definir nome do produto, identidade visual básica e estrutura de branding (pode reaproveitar aprendizados de design system do MindCare).
+1. Gerar a spec técnica detalhada da Fase 1 (telas, endpoints, fluxo de auth + paywall).
+2. Inicializar `packages/web` (Next.js) — listagem de jogos, palpite free, score de confiança.
+3. Expor palpites 1x2 e over/under via API pública (prior Poisson + value gate, sem LLM).
+4. Implementar auth (Supabase) e paywall (Asaas) com camada free vs. assinante.
+5. Disclaimers de jogo responsável e verificação de idade (18+) no cadastro.
+6. Expandir ingestão de odds para 2–3 ligas além do Brasileirão.
