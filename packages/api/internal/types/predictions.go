@@ -14,9 +14,30 @@ type PredictionDTO struct {
 	IsFreeTier        bool     `json:"is_free_tier"`
 	PublishedAt       *string  `json:"published_at"`
 	CreatedAt         string   `json:"created_at"`
+	ActualOutcome     *string  `json:"actual_outcome,omitempty"`
+	WasCorrect        *bool    `json:"was_correct,omitempty"`
+	SettledAt         *string  `json:"settled_at,omitempty"`
 }
 
 type PredictionsResponse struct {
 	Count int             `json:"count"`
 	Items []PredictionDTO `json:"items"`
+}
+
+type AccuracyDTO struct {
+	ID                 string  `json:"id"`
+	PeriodStart        string  `json:"period_start"`
+	PeriodEnd          string  `json:"period_end"`
+	Market             string  `json:"market"`
+	RiskLabel          *string `json:"risk_label"`
+	TotalPredictions   int     `json:"total_predictions"`
+	CorrectPredictions int     `json:"correct_predictions"`
+	AccuracyPct        float64 `json:"accuracy_pct"`
+	MethodologyVersion string  `json:"methodology_version"`
+	ComputedAt         string  `json:"computed_at"`
+}
+
+type AccuracyResponse struct {
+	Count int           `json:"count"`
+	Items []AccuracyDTO `json:"items"`
 }

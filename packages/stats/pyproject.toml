@@ -20,6 +20,7 @@ scouter-backtest = "scouter_stats.backtest:main"
 scouter-ingest = "scouter_stats.ingest:main"
 scouter-judge = "scouter_stats.judge:main"
 scouter-context = "scouter_stats.context_ingest:main"
+scouter-settle = "scouter_stats.settle:main"
 
 [build-system]
 requires = ["hatchling"]

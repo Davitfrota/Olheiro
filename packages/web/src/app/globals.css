@@ -1,0 +1,32 @@
+:root {
+  --bg: #f3efe6;
+  --bg-deep: #e7e0d2;
+  --ink: #14201a;
+  --muted: #5b685f;
+  --line: #c9c0b0;
+  --pitch: #1f6b45;
+  --pitch-soft: #d7ebe0;
+  --warn: #9a3412;
+  --ok: #166534;
+  --bad: #991b1b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #dff3e8 0%, transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, #efe6d4 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}

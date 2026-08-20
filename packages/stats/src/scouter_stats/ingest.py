@@ -95,11 +95,9 @@ def fetch_odds_events(client: httpx.Client, api_key: str) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def _get_supabase():
-    from supabase import create_client
+    from scouter_stats.supabase_client import get_supabase
 
-    url = _env("SUPABASE_URL")
-    key = _env("SUPABASE_SERVICE_ROLE_KEY") if os.environ.get("SUPABASE_SERVICE_ROLE_KEY") else _env("SUPABASE_ANON_KEY")
-    return create_client(url, key)
+    return get_supabase(require_service_role=True)
 
 
 def ingest_fixtures_to_supabase(fixtures: list[dict]) -> dict:

@@ -44,11 +44,9 @@ def _env(key: str) -> str:
 
 
 def _get_supabase():
-    from supabase import create_client
+    from scouter_stats.supabase_client import get_supabase
 
-    url = _env("SUPABASE_URL")
-    key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or _env("SUPABASE_ANON_KEY")
-    return create_client(url, key)
+    return get_supabase(require_service_role=True)
 
 
 @dataclass

@@ -56,14 +56,10 @@ def fetch_finished_fixtures(
 
 def fetch_fixtures_from_supabase(*, max_fixtures: int | None = None) -> list[FixtureResult]:
     """Carrega matches finalizados do Supabase, ordenados por kickoff."""
-    from supabase import create_client
+    from scouter_stats.supabase_client import get_supabase, load_env
 
-    url = os.environ.get("SUPABASE_URL")
-    key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ.get("SUPABASE_ANON_KEY")
-    if not url or not key:
-        raise SystemExit("SUPABASE_URL and SUPABASE_ANON_KEY required for --source supabase")
-
-    sb = create_client(url, key)
+    load_env()
+    sb = get_supabase(require_service_role=False)
     query = (
         sb.table("matches")
         .select("id, kickoff_at, home_score, away_score, home_team:teams!matches_home_team_id_fkey(name), away_team:teams!matches_away_team_id_fkey(name)")
@@ -250,14 +246,10 @@ def run_backtest(
 
 def persist_priors(prior_rows: list[dict]) -> dict:
     """Upsert statistical_priors no Supabase."""
-    from supabase import create_client
+    from scouter_stats.supabase_client import get_supabase, load_env
 
-    url = os.environ.get("SUPABASE_URL")
-    key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ.get("SUPABASE_ANON_KEY")
-    if not url or not key:
-        raise SystemExit("SUPABASE_URL/ANON_KEY required for --persist")
-
-    sb = create_client(url, key)
+    load_env()
+    sb = get_supabase(require_service_role=True)
     inserted = 0
     errors: list[str] = []
 

@@ -61,6 +61,10 @@ scouter-ia/
 - [x] Aliases cross-API completos (46 aliases + clubes atuais da Odds API)
 - [x] Contexto qualitativo (`scouter-context`) — 1668 absences + lineups
 - [x] API Go `GET /v1/predictions`
+- [x] Settlement `prediction_results` + `scouter-settle` + `GET /v1/accuracy`
+- [x] RLS: writes só via `service_role` (anon write policies revogadas)
+- [x] Web mínima Next.js (`packages/web`) listando tips + acurácia
+- [ ] Colar `SUPABASE_SERVICE_ROLE_KEY` no `.env` (MCP só expõe chaves publicáveis)
 - [ ] Entity resolution contínua / priors para clubes novos da temporada atual
 - [ ] LLM critic + explicações (Fase 2)
 

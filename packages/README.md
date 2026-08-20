@@ -6,6 +6,6 @@ Cada subdiretório será inicializado nas fases correspondentes do roadmap.
 |---|---|---|
 | `api/` | 0–1 | Backend Go/Fiber — ingestão, API pública, auth — **iniciado** |
 | `stats/` | 0 | Motor estatístico Python (Poisson/Elo) — **iniciado** |
-| `web/` | 1 | Frontend Next.js |
+| `web/` | 1 | Frontend Next.js — **iniciado** (lista de predictions) |
 | `mobile/` | 1 | App React Native (Android) |
 
